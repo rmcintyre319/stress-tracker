@@ -1,0 +1,23 @@
+#form, #chart{
+  display: inline-block;
+}
+
+#form {
+  width: 20%;
+  vertical-align: top;
+  margin-top: 2.5%;
+}
+
+#chart {
+  width: 70%;
+  margin: 2.5%;
+}
+.mat-form-field {
+  width: 100%;
+}
+
+#sub-button {
+  width: 5  0%;
+  margin-left: 25%;
+  margin-right: 25%;
+}

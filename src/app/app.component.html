@@ -1,0 +1,62 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
+<div>
+  <div id="chart">
+    <mat-card [class.mat-elevation-z8]="true">
+      <mat-card-header>
+        <mat-card-title>Stress Chart</mat-card-title>
+        <mat-card-subtitle>Stressful Events vs Caloric Intake</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+    </mat-card-content>
+    </mat-card>
+  </div>
+  <div id="form">
+    <mat-card [class.mat-elevation-z8]="true">
+      <mat-card-header>
+        <mat-card-title>Entry Submission</mat-card-title>
+        <mat-card-subtitle>Submit a new event...</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <br>
+        <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="picker1" [formControl]="date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-divider id="entry-separator" [inset]="true"></mat-divider>
+        <mat-form-field appearance="standard">
+          <mat-label>Daily Stress Level</mat-label>
+          <mat-select>
+            <mat-option value="option">None</mat-option>
+            <mat-option value="option">Low</mat-option>
+            <mat-option value="option">Average</mat-option>
+            <mat-option value="option">High</mat-option>
+            <mat-option value="option">Very High</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="standard">
+          <mat-label>Stressful Event (Optional)</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <br>
+        <mat-divider id="entry-separator" [inset]="true"></mat-divider>
+        <mat-form-field appearance="standard">
+          <mat-label>Caloric Intake</mat-label>
+          <input matInput type="number">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" id="sub-button">Submit</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
