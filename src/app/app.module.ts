@@ -35,7 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatCardModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [
     MatDatepickerModule

@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators, FormGroup, NgForm } from '@angular/forms';
+
+let stress_data = [];
+let calorie_data = [];
+let date_data = [];
+let stress_values = ["None","Low","Average","High","Very High"];
+let stress_equivalent = [0, 250, 500, 750, 1000];
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,17 +22,39 @@ export class AppComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels = ['3/1', '3/2', '3/3', '3/4', '3/5', '3/6', '3/7'];
+  public barChartLabels = date_data;
   public barChartType = 'line';
   public barChartLegend = true;
   public barChartData = [
-    {data: [2000, 2111, 1951, 1352, 2701, 2051, 2031], label: 'Caloric Intake'},
-    {data: [2000, 2000, 2000, 3000, 2000, 2000, 2750], label: 'Stress Levels'}
+    {data: calorie_data, label: 'Caloric Intake'},
+    {data: stress_data, label: 'Stress Levels'}
   ];
 
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
 
+  userEntryForm = new FormGroup({
+    date: new FormControl('', [
+      Validators.required
+    ]),
+    stress: new FormControl('', [
+      Validators.required
+    ]),
+    event: new FormControl('',[]),
+    intake: new FormControl('', [
+      Validators.required
+    ])
+  });
+
+
   ngOnInit() {
   }
+
+  user_submit() {
+    calorie_data.push(this.userEntryForm.value.intake);
+    console.log(stress_equivalent[stress_values.indexOf(this.userEntryForm.value.stress)]);
+    stress_data.push(stress_equivalent[stress_values.indexOf(this.userEntryForm.value.stress)]);
+    date_data.push(this.userEntryForm.value.date);
+  }
+
 }
